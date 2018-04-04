@@ -25,7 +25,7 @@ public class FrameGui extends JPanel implements KeyListener{
 		
 	}
 	public void keyPressed(KeyEvent kp) {
-		// TODO Auto-generated method stub
+		
 		int keyCode = kp.getKeyCode();
 		switch (keyCode) {
 		case KeyEvent.VK_A:
