@@ -17,7 +17,7 @@ public class EnemyFactory {
 			Boss boss = new Boss();
 			return boss;
 		} else if (b.equalsIgnoreCase("basic")) {
-			Basic basic = new Basic();
+			Basic basic = new Basic(null,0);
 			return basic;
 		} else {
 			throw new IllegalArgumentException(

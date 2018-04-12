@@ -2,7 +2,8 @@
  * 
  */
 package Main;
-import Objects.*; 
+
+import Objects.*;
 import Lists.*;
 import UI.*;
 import java.awt.*;
@@ -12,6 +13,10 @@ import javax.swing.*;
  * @author Daniel Acuña Mora
  *
  */
+<<<<<<< HEAD
+=======
+
+>>>>>>> GUI
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

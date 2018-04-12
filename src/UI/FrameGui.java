@@ -7,39 +7,64 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import Objects.Bullet;
+import Objects.Player;
+
 /**
  *
  */
 public class FrameGui extends JPanel implements KeyListener{
-	int x=150,y=400;
+	Player p1 = new Player(this);
+	
+	int px=150,py=400;
+	public Graphics g;
 
+	/**
+	 * @return the px
+	 */
+	public int getPx() {
+		return px;
+	}
+	/**
+	 * @return the py
+	 */
+	public int getPy() {
+		return py;
+	}
 	public FrameGui() {
 		addKeyListener(this);
 		setFocusable(true);
 	}
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		setBackground(Color.BLACK);
-		g.setColor(Color.BLUE);
-		g.fillRect(x, y, 50, 50);
+	public void paint(Graphics g) {
+		super.paint(g);
+		Graphics2D g1 = (Graphics2D) g;
+		p1.paint(g1);
 		
 	}
+	public void move() {
+		
+		
+	}
+
 	public void keyPressed(KeyEvent kp) {
 		
 		int keyCode = kp.getKeyCode();
-		switch (keyCode) {
+		switch (keyCode) {  
 		case KeyEvent.VK_A:
-			x-=5;
+			
 			break;
 		case KeyEvent.VK_D:
-			x+=5;
+			px+=5;
 			break;
 		case KeyEvent.VK_LEFT:
-			x-=5;
+			px-=5;
 			break;
 		case KeyEvent.VK_RIGHT:
-			x+=5;
+			px+=5;
 			break;
+		case KeyEvent.VK_SPACE:
+ 			break;
+			
 
 		default:
 			break;
