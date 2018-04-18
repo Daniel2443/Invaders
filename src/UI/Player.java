@@ -64,10 +64,22 @@ public class Player {
 	}
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)
-			xa = -10;
+			xa = -3;
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-			xa = 10;
+			xa = 3;
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
 			shoot();
 	}
+	
+	public void moveRight() {
+		xa = 3;	}
+	
+	public void moveLeft() {
+		xa = -3;
+	}
+	
+	public void idle() {
+		xa = 0;
+	}
+
 }

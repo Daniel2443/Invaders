@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Android.Server;
 import Objects.Basic;
 
 @SuppressWarnings("serial")
@@ -23,9 +24,11 @@ public class Game extends JPanel {
 	public Graphics2D g;
 
 	Ball ball = new Ball(this);
-	Player racquet = new Player(this);
+	private Player racquet = new Player(this);
 	private ArrayList<Basic> basic = new ArrayList<Basic>();
-	
+	public Player getPlayer() {
+		return this.racquet;
+	}
  	public ArrayList<Basic> getBasic(){
  		return this.basic;
  	}
@@ -95,6 +98,10 @@ public class Game extends JPanel {
 	public int getHeight() {
 		return HEIGHT;
 	}
+	public void server() {
+		Server server = new Server("Proceso",this);
+		server.start();
+	}
 	
 	public static void main(String[] args) throws InterruptedException {
 		JFrame frame = new JFrame("Invaders ");
@@ -105,6 +112,7 @@ public class Game extends JPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		game.enemy();
+		game.server();
 		while (true) {
 			game.move();
 			game.repaint();

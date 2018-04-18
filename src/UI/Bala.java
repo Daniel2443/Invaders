@@ -37,7 +37,7 @@ public class Bala {
 //			
 //		}
 		if(hit()) {
-			game.racquet.bala.remove(this);
+			game.getPlayer().bala.remove(this);
 		}
 
 	}

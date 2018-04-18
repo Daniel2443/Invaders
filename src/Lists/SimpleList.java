@@ -55,5 +55,16 @@ public class SimpleList<T> {
 	public int size() {
 		return this.size;
 	}
+
+	public T get(int i){
+	    int count = 0;
+	    SimpleNode<T> temporal = this.head;
+	
+	    while (count < i){
+	        temporal = temporal.getNext();
+	        count++;
+	    }
+	    return temporal.getObj();
+	}
 	
 }
