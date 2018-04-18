@@ -23,9 +23,12 @@ public class Game extends JPanel {
 	public Graphics2D g;
 
 	Ball ball = new Ball(this);
-	Racquet racquet = new Racquet(this);
-	ArrayList<Basic> basic = new ArrayList<Basic>();
-
+	Player racquet = new Player(this);
+	private ArrayList<Basic> basic = new ArrayList<Basic>();
+	
+ 	public ArrayList<Basic> getBasic(){
+ 		return this.basic;
+ 	}
 	public Game() {
 
 		addKeyListener(new KeyListener() {
@@ -47,11 +50,10 @@ public class Game extends JPanel {
 	}
 
 	private void move() throws InterruptedException {
-		ball.move();
 		racquet.move();
-		if (!(basic.isEmpty())) {
-			for (int i = 0; i < basic.size(); i++) {
-				basic.get(i).move();
+		if (!(getBasic().isEmpty())) {
+			for (int i = 0; i < getBasic().size(); i++) {
+				getBasic().get(i).move();
 				
 			}
 		}
@@ -62,11 +64,10 @@ public class Game extends JPanel {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		ball.paint(g2d);
 		racquet.paint(g2d);
-		if (!(basic.isEmpty())) {
-			for (int i = 0; i < basic.size(); i++) {
-				basic.get(i).paint(g2d);
+		if (!(getBasic().isEmpty())) {
+			for (int i = 0; i < getBasic().size(); i++) {
+				getBasic().get(i).paint(g2d);
 			
 			}
 		}
@@ -81,10 +82,11 @@ public class Game extends JPanel {
 	}
 
 	public void enemy() {
-		if (basic.size() < 10)
-			basic.add(new Basic(this));
-		System.out.println("Basic: " + basic.size());
-
+		int x=this.getWidth()-30;
+		while(getBasic().size()<10) {
+			getBasic().add(new Basic(this,x));
+			x-=100;
+		}
 	}
 
 	/**
@@ -93,18 +95,17 @@ public class Game extends JPanel {
 	public int getHeight() {
 		return HEIGHT;
 	}
-
+	
 	public static void main(String[] args) throws InterruptedException {
-		JFrame frame = new JFrame("Mini Tennis");
+		JFrame frame = new JFrame("Invaders ");
 		Game game = new Game();
 		frame.add(game);
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
-
+		game.enemy();
 		while (true) {
-			game.enemy();
 			game.move();
 			game.repaint();
 			Thread.sleep(10);

@@ -10,7 +10,9 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Timer;
 
-public class Racquet {
+import Lists.SimpleList;
+
+public class Player {
 	private Game game;
 
 	int x;
@@ -19,7 +21,7 @@ public class Racquet {
 
 	ArrayList<Bala> bala;
 
-	public Racquet(Game game) {
+	public Player(Game game) {
 		this.game = game;
 		this.x = game.getWidth() / 2;
 		bala = new ArrayList<Bala>();
@@ -45,23 +47,21 @@ public class Racquet {
 			
 			}
 		}
-		if(bala.size()>=50) {
+		if(bala.size()>=10) {
 			bala.remove(1);
 		}
 	
 	}
 
-	public void keyReleased(KeyEvent e) {
-		xa = 0;
-	}
-
 	private void shoot() {
 		bala.add(new Bala(game, x));
-		System.out.println(bala.size());
-		
 	}
 	
-
+	public void keyReleased(KeyEvent e) {
+		if(e.getKeyCode()== KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT ) {
+			xa = 0;
+		}
+	}
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)
 			xa = -10;

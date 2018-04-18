@@ -8,7 +8,7 @@ package Lists;
  *
  */
 public class SimpleNode<T> {
-	private T name;
+	private T obj;
 	private SimpleNode<T> next;
 	private SimpleNode<T> prev;
 
@@ -17,8 +17,8 @@ public class SimpleNode<T> {
 	 * @param next
 	 * @param prev
 	 */
-	public SimpleNode(T name) {
-		this.name = name;
+	public SimpleNode(T obj) {
+		this.obj = obj;
 	}
 
 	public void linkNext(SimpleNode<T> next) {
@@ -29,7 +29,21 @@ public class SimpleNode<T> {
 		this.next = prev;
 	}
 
-	public T getName() {
-		return name;
+	public T getObj() {
+		return this.obj;
+	}
+
+	/**
+	 * @return the next
+	 */
+	public SimpleNode<T> getNext() {
+		return next;
+	}
+
+	/**
+	 * @return the prev
+	 */
+	public SimpleNode<T> getPrev() {
+		return prev;
 	}
 }
