@@ -52,14 +52,20 @@ public class Player {
 		}
 	
 	}
-
-	private void shoot() {
-		bala.add(new Bala(game, x));
+	public boolean shoot= true;
+	public void shoot() {
+		if(shoot) {
+			bala.add(new Bala(game, x));
+			shoot=false;
+		}
 	}
 	
 	public void keyReleased(KeyEvent e) {
 		if(e.getKeyCode()== KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT ) {
 			xa = 0;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_SPACE) {
+			shoot=true;
 		}
 	}
 	public void keyPressed(KeyEvent e) {

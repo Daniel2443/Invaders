@@ -46,4 +46,8 @@ public class SimpleNode<T> {
 	public SimpleNode<T> getPrev() {
 		return prev;
 	}
+
+	/**
+	 * 
+	 */
 }

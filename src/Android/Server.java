@@ -27,7 +27,6 @@ public class Server extends Thread {
 	public Server(String msg, Game game) {
 		super(msg);
 		this.game = game;
-
 	}
 
 	public void run() {
@@ -48,6 +47,9 @@ public class Server extends Thread {
 				} else {
 					game.getPlayer().idle();
 
+				}
+				if(message.equals("F")) {
+					game.getPlayer().shoot();
 				}
 				cliente.close();
 			}

@@ -20,19 +20,27 @@ public class Basic extends Enemy {
 	public Game game;
 	int x = 0;
 	int y = 50;
-	int xa = 5;
+	int xa = 3;
 	int ya = 1;
+	int n ,m;
+	int health = 1;
 	
-	public Basic(Game game,int x) {
+	public Basic(Game game,int x,int n,int m) {
 		this.x = x;
 		this.game = game;
+		this.n = n;
+		this.m = m;
 	}
 	@Override
 	public void move() {
-		if (x + xa < 0)
+		if (x + xa < 50 + n) {
 			xa = 3;
-		if (x + xa > game.getWidth() - 30)
+			y+=10;
+		}
+		if (x + xa > 50+m) {
 			xa = -3;
+			y+=10;
+			}
 //		if(hit()) {
 //			System.out.println("Pegó");
 //		}
@@ -41,7 +49,7 @@ public class Basic extends Enemy {
 	}
 	public void paint(Graphics2D g) {
 		g.setColor(Color.BLUE);
-		g.fillOval(this.x, y, 30, 30);
+		g.fillRect(this.x, y, 50, 50);
 		
 	}
 //	public boolean hit() {
@@ -49,12 +57,19 @@ public class Basic extends Enemy {
 //		
 //	}
 	public Rectangle getBounds() {
-		return new Rectangle(x,y,30,30);
+		return new Rectangle(x,y,50,50);
 	}
 	public void mori() {
 		System.out.println("Morí");
 		game.getBasic().remove(this);
 	}
-	
+	public void bajarvida() {
+		this.health -= 1;
+		System.out.println(this.health);
+		if(this.health==0) {
+			mori();
+		}
+		
+	}
 
 }

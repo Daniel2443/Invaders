@@ -9,14 +9,13 @@ package Lists;
  */
 public class SimpleList<T> {
 	private SimpleNode<T> head;
-	private int size;
+	private int size=0;
 
-	public void addFirst(T obj) {
+	public void add(T obj) {
+		this.size +=1;
+
 		if (head == null) {
-			SimpleNode<T> node = new SimpleNode<T>(obj);
-			this.head = node;
-			this.size += 1;
-
+			this.head = new SimpleNode<T>(obj);
 		} else {
 			SimpleNode<T> temp = this.head;
 			SimpleNode<T> node = new SimpleNode<T>(obj);
@@ -55,6 +54,26 @@ public class SimpleList<T> {
 	public int size() {
 		return this.size;
 	}
+	public void remove(T dato){
+		SimpleNode<T> nodo = this.head;
+		if(nodo.getObj() == dato){
+			this.head = nodo.getNext();
+			size --;
+		}else{
+			while(nodo.getNext()!= null){
+				if(nodo.getNext().getObj() == dato){
+					nodo.linkNext(nodo.getNext().getNext());
+					size --;
+//					if(nodo.getNext() == null){
+//						this.tail = nodo;
+//					}
+					break;
+				}else{
+					nodo = nodo.getNext();
+				}
+			}
+		}
+}
 
 	public T get(int i){
 	    int count = 0;

@@ -27,31 +27,33 @@ public class Bala {
 
 	public void paint(Graphics2D g) {
 		g.setColor(Color.RED);
-		g.fillOval(x, y, 30, 30);
+		g.fillRect(x, y, 15, 30);
 
 	}
 
 	public void move() {
-		y -= 5;
+		y -= 10;
 //		if(hit()) {
 //			
 //		}
 		if(hit()) {
 			game.getPlayer().bala.remove(this);
 		}
+//		if(y<=0) {
+//			game.getPlayer().bala.remove(this);
+//		}
 
 	}
 
 	public Rectangle getBounds() {
-		return new Rectangle(x, y, 30, 30);
+		return new Rectangle(x, y, 15, 30);
 	}
-
 	public boolean hit() {
 		if(!game.getBasic().isEmpty()) {
 			for(int i=0;i<game.getBasic().size();i++) {
 				Basic temp = game.getBasic().get(i);
 				if(temp.getBounds().intersects(getBounds())) {
-					temp.mori();
+					temp.bajarvida();
 					return true;
 				}
 			}
