@@ -50,6 +50,7 @@ public class Server extends Thread {
 				}
 				if(message.equals("F")) {
 					game.getPlayer().shoot();
+					game.getPlayer().shoot=true;
 				}
 				cliente.close();
 			}
