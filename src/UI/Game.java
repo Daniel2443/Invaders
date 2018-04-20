@@ -14,8 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Android.Server;
+import Enemies.Cadete;
 import Lists.SimpleList;
-import Objects.Basic;
 
 @SuppressWarnings("serial")
 public class Game extends JPanel {
@@ -25,11 +25,11 @@ public class Game extends JPanel {
 	public Graphics2D g;
 
 	private Player player = new Player(this);
-	private SimpleList<Basic> basic = new SimpleList<Basic>();
+	private SimpleList<Cadete> basic = new SimpleList<Cadete>();
 	public Player getPlayer() {
 		return this.player;
 	}
- 	public SimpleList<Basic> getBasic(){
+ 	public SimpleList<Cadete> getBasic(){
  		return this.basic;
  	}
 	public Game() {
@@ -87,7 +87,7 @@ public class Game extends JPanel {
 		int n=0;
 		int m=((getWidth()-x) - getWidth()/2);
 		while(getBasic().size()<5) {
-			getBasic().add(new Basic(this,x,n,m));
+			getBasic().add(new Cadete(this,x,n,m));
 			x+=150;
 			n+=150;
 			m+=150;

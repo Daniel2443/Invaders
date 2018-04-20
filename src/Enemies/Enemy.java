@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Objects;
+package Enemies;
 
 /**
  * @author Daniel Acuña Mora
