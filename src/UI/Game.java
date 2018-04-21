@@ -105,7 +105,7 @@ public class Game extends JPanel {
 	}
 
 	public void enemy() {
-		int n = 2;
+		int n = 3;
 		int numero = (int) (Math.random() * n) + 1;
         switch (numero) {
         case 1: A a = new A(this);

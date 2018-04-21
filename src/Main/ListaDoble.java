@@ -1,20 +1,22 @@
 /**
  * 
  */
-package Lists;
+package Main;
+
+import Lists.DoubleNode;
 
 /**
  * @author Daniel Acuña Mora
  *
  */
-public class DoubleList <T>{
+public class ListaDoble <T>{
 	private DoubleNode<T> head;
 	private DoubleNode<T> tail;
 	private int size;
 	public int positionEnemy;
 	public int positionBoss;
 	public int position;
-	public DoubleList(){
+	public ListaDoble(){
 		this.head = null;
 		this.tail = null;
 		this.size = 0;
@@ -79,33 +81,28 @@ public class DoubleList <T>{
 //			}
 //		}
 //	}
-	public void remove(T dato){
-		DoubleNode<T> nodo = this.head;
-		while(nodo != null){
-			if(nodo.getObj() == dato){
-				if(nodo != head && nodo.getNext() == null){
-					nodo.getPrev().setNext(null);
-					this.tail = nodo.getPrev();
+	public void remove(T dato) {
+		DoubleNode<T> nodo =this.head;
+		if(nodo.getObj() == dato){
+			this.head = nodo.getNext();
+			size --;
+		}else{
+			while(nodo.getNext()!= null){
+				if(nodo.getNext().getObj() == dato){
+					nodo.setNext(nodo.getNext().getNext());
 					size --;
-				}else if(nodo == head){
-					if(nodo.getNext() == null){
-						this.head = null;
-						this.tail = null;
-						size --;
-					}else{
-						this.head = nodo.getNext();
-						nodo.getNext().setPrev(null);
-						size --;
-					}
-				}else if(nodo != head && nodo.getNext() != null && nodo.getPrev() != null){
-					nodo.getPrev().setNext(nodo.getNext());
-					nodo.getNext().setPrev(nodo.getPrev());
-					size --;
+					break;
+				}else{
+					nodo = nodo.getNext();
 				}
-				break;
-			}else{
-				nodo = nodo.getNext();
 			}
+		}
+	}	
+	public void printList(){
+		DoubleNode<T> actual = this.head;
+		while(actual != null){
+			System.out.println(actual.getObj());
+			actual = actual.getNext();
 		}
 }
 	

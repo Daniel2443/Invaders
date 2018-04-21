@@ -29,7 +29,7 @@ public class DoubleNode<T> {
 	}
 
 	public void setPrev(DoubleNode<T> prev) {
-		this.next = prev;
+		this.prev = prev;
 	}
 
 	public T getObj() {
