@@ -61,7 +61,7 @@ public class Recruit extends Enemy {
 	public void mori() {
 		System.out.println("Morí");
 		//game.getBasic().remove(this);
-		game.getB().remove(this);
+		game.getBasic().remove(this);
 	}
 
 	public void lowhealth() {

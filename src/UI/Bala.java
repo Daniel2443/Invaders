@@ -7,7 +7,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import Objects.Basic;
+import Enemies.Cadete;
+import Enemies.Recruit;
+import Lists.SimpleList;
 
 /**
  * @author Daniel Acuña Mora
@@ -39,9 +41,9 @@ public class Bala {
 		if(hit()) {
 			game.getPlayer().bala.remove(this);
 		}
-//		if(y<=0) {
-//			game.getPlayer().bala.remove(this);
-//		}
+		if(y<=0) {
+			game.getPlayer().bala.remove(this);
+		}
 
 	}
 
@@ -51,9 +53,9 @@ public class Bala {
 	public boolean hit() {
 		if(!game.getBasic().isEmpty()) {
 			for(int i=0;i<game.getBasic().size();i++) {
-				Basic temp = game.getBasic().get(i);
+				Recruit temp = game.getBasic().get(i);
 				if(temp.getBounds().intersects(getBounds())) {
-					temp.bajarvida();
+					temp.lowhealth();
 					return true;
 				}
 			}

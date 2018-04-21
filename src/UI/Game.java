@@ -14,22 +14,24 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Android.Server;
+import Enemies.*;
+import Hileras.Basic;
 import Lists.SimpleList;
-import Objects.Basic;
 
 @SuppressWarnings("serial")
 public class Game extends JPanel {
-	public static final int WIDTH = 1350;
+	public static final int WIDTH = 1900;
 	public static final int HEIGHT = 700;
 
 	public Graphics2D g;
 
 	private Player player = new Player(this);
-	private SimpleList<Basic> basic = new SimpleList<Basic>();
+	private SimpleList<Recruit> basic = new SimpleList<>();
+	
 	public Player getPlayer() {
 		return this.player;
 	}
- 	public SimpleList<Basic> getBasic(){
+ 	public SimpleList<Recruit> getBasic(){
  		return this.basic;
  	}
 	public Game() {
@@ -83,15 +85,18 @@ public class Game extends JPanel {
 	}
 
 	public void enemy() {
-		int x=80;
-		int n=0;
-		int m=((getWidth()-x) - getWidth()/2);
-		while(getBasic().size()<5) {
-			getBasic().add(new Basic(this,x,n,m));
-			x+=150;
-			n+=150;
-			m+=150;
-		}
+//		int x=80;
+//		int n=0;
+//		int m=((getWidth()-x) - getWidth()/2);
+//		while(getBasic().size()<5) {
+//			getBasic().add(new Recruit(this,x,n,m));
+//			x+=150;
+//			n+=150;
+//			m+=150;
+//		}
+		Basic b =new Basic(this);
+		b.paint();
+		
 	}
 
 	/**
