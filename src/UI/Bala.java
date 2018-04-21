@@ -7,7 +7,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import Enemies.Cadete;
+import Objects.Basic;
 
 /**
  * @author Daniel Acuña Mora
@@ -39,9 +39,9 @@ public class Bala {
 		if(hit()) {
 			game.getPlayer().bala.remove(this);
 		}
-		if(y<=0) {
-			game.getPlayer().bala.remove(this);
-		}
+//		if(y<=0) {
+//			game.getPlayer().bala.remove(this);
+//		}
 
 	}
 
@@ -51,7 +51,7 @@ public class Bala {
 	public boolean hit() {
 		if(!game.getBasic().isEmpty()) {
 			for(int i=0;i<game.getBasic().size();i++) {
-				Cadete temp = game.getBasic().get(i);
+				Basic temp = game.getBasic().get(i);
 				if(temp.getBounds().intersects(getBounds())) {
 					temp.bajarvida();
 					return true;

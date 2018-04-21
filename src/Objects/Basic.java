@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Enemies;
+package Objects;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -16,7 +16,7 @@ import UI.Game;
  * @author Daniel Acuña Mora
  *
  */
-public class Cadete extends Enemy {
+public class Basic extends Enemy {
 	public Game game;
 	int x = 0;
 	int y = 50;
@@ -25,7 +25,7 @@ public class Cadete extends Enemy {
 	int n ,m;
 	int health = 1;
 	
-	public Cadete(Game game,int x,int n,int m) {
+	public Basic(Game game,int x,int n,int m) {
 		this.x = x;
 		this.game = game;
 		this.n = n;
@@ -35,11 +35,11 @@ public class Cadete extends Enemy {
 	public void move() {
 		if (x + xa < 50 + n) {
 			xa = 3;
-			y+=30;
+			y+=10;
 		}
 		if (x + xa > 50+m) {
 			xa = -3;
-			y+=30;
+			y+=10;
 			}
 //		if(hit()) {
 //			System.out.println("Pegó");
