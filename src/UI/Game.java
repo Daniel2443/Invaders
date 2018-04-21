@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 
 import Android.Server;
 import Enemies.*;
-import Hileras.Basic;
-import Lists.SimpleList;
+import Hileras.*;
+import Lists.*;
 
 @SuppressWarnings("serial")
 public class Game extends JPanel {
@@ -27,10 +27,18 @@ public class Game extends JPanel {
 
 	private Player player = new Player(this);
 	private SimpleList<Recruit> basic = new SimpleList<>();
+	private DoubleList<Recruit> Double = new DoubleList<Recruit>();
+	public int generated =0;
 	
+	/**
+	 * @return the double
+	 */
+	public DoubleList<Recruit> getDouble() {
+		return Double;
+	}
 	public Player getPlayer() {
 		return this.player;
-	}
+	} 
  	public SimpleList<Recruit> getBasic(){
  		return this.basic;
  	}
@@ -60,6 +68,12 @@ public class Game extends JPanel {
 			for (int i = 0; i < getBasic().size(); i++) {
 				getBasic().get(i).move();							}
 		}
+		if (!(getDouble().isEmpty())) {
+			for (int i = 0; i < getDouble().size(); i++) {
+				getDouble().get(i).move();
+			
+			}
+		}
 	}
 
 	@Override
@@ -74,6 +88,12 @@ public class Game extends JPanel {
 			
 			}
 		}
+		if (!(getDouble().isEmpty())) {
+			for (int i = 0; i < getDouble().size(); i++) {
+				getDouble().get(i).paint(g2d);
+			
+			}
+		}
 
 	}
 
@@ -85,18 +105,26 @@ public class Game extends JPanel {
 	}
 
 	public void enemy() {
-//		int x=80;
-//		int n=0;
-//		int m=((getWidth()-x) - getWidth()/2);
-//		while(getBasic().size()<5) {
-//			getBasic().add(new Recruit(this,x,n,m));
-//			x+=150;
-//			n+=150;
-//			m+=150;
-//		}
-		Basic b =new Basic(this);
-		b.paint();
-		
+		int n = 2;
+		int numero = (int) (Math.random() * n) + 1;
+        switch (numero) {
+        case 1: A a = new A(this);
+				a.render();
+				generated=2;;
+                 break;
+        case 2: Basic ba = new Basic(this);
+				ba.paint();
+				generated=2;;
+                 break;
+        case 3: B b = new B(this);
+				b.render();
+				generated=2; ;
+                 break;
+        case 4:  ;
+                 break;
+        case 5:  ;
+                 break;
+    }
 	}
 
 	/**

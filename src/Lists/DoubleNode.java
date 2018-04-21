@@ -20,13 +20,15 @@ public class DoubleNode<T> {
 	 */
 	public DoubleNode(T name) {
 		this.obj = name;
+		this.next=null;
+		this.prev=null;
 	}
 
-	public void linkNext(DoubleNode<T> next) {
+	public void setNext(DoubleNode<T> next) {
 		this.next = next;
 	}
 
-	public void linkPrev(DoubleNode<T> prev) {
+	public void setPrev(DoubleNode<T> prev) {
 		this.next = prev;
 	}
 
@@ -35,5 +37,9 @@ public class DoubleNode<T> {
 	}
 	public DoubleNode<T> getNext() {
 		return this.next;
+	}
+	public DoubleNode<T> getPrev() {
+		return this.prev;
+		
 	}
 }

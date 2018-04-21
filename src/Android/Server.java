@@ -55,7 +55,7 @@ public class Server extends Thread {
 				cliente.close();
 			}
 		} catch (IOException e) {
-			System.out.println("sadsd");
+			System.out.println("Error");
 		}
 	}
 }

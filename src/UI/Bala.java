@@ -7,9 +7,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import Enemies.Cadete;
-import Enemies.Recruit;
-import Lists.SimpleList;
+import Enemies.*;
 
 /**
  * @author Daniel Acuña Mora
@@ -55,6 +53,16 @@ public class Bala {
 			for(int i=0;i<game.getBasic().size();i++) {
 				Recruit temp = game.getBasic().get(i);
 				if(temp.getBounds().intersects(getBounds())) {
+					temp.lowhealth();
+					return true;
+				}
+			}
+		}
+		if(!game.getDouble().isEmpty()) {
+			for(int i=0;i<game.getDouble().size();i++) {
+				Recruit temp = game.getDouble().get(i);
+				if(temp.getBounds().intersects(getBounds())) {
+					System.out.println("Pegó");
 					temp.lowhealth();
 					return true;
 				}

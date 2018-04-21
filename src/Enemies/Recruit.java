@@ -16,25 +16,24 @@ import UI.Game;
  * @author Daniel Acuña Mora
  *
  */
-public class Recruit extends Enemy {
+public class Recruit{
 	public Game game;
 	int x = 0;
 	int y = 50;
 	int xa = 3;
 	int ya = 1;
 	int n ,m;
-	int health = 1;
+	int health = 2;
 	public Recruit(Game game,int x,int n,int m) {
 		this.x = x;
 		this.game = game;
 		this.n = n;
 		this.m = m;
 	}
-	@Override
 	public void move() {
 		if (x + xa < 50 + n) {
 			xa = 3;
-			y+=30;
+			y+=100;
 		}
 		if (x + xa > 50+m) {
 			xa = -3;
@@ -60,14 +59,16 @@ public class Recruit extends Enemy {
 	}
 	public void mori() {
 		System.out.println("Morí");
-		//game.getBasic().remove(this);
-		game.getBasic().remove(this);
+		if(game.generated==1 ) {	
+			game.getBasic().remove(this);}
+		else if(game.generated==2) {
+			game.getDouble().remove(this);}
 	}
 
 	public void lowhealth() {
 		this.health -= 1;
 		System.out.println(this.health);
-		if(this.health==0) {
+		if(this.health<=0) {
 			mori();
 		}
 		
