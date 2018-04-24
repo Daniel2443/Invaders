@@ -30,13 +30,19 @@ public class Recruit{
 		this.n = n;
 		this.m = m;
 	}
+	/**
+	 * Este metodo es utilizado para determinar las posiciones y limites de
+	 * cada elemento. 
+	 * Por lo tanto debido a un valor de xa se edita el x que es llamado en paint
+	 * 
+	 */
 	public void move() {
 		if (x + xa < 50 + n) {
-			xa = 3;
+			xa = 2;
 			y+=100;
 		}
 		if (x + xa > 50+m) {
-			xa = -3;
+			xa = -2;
 			y+=100;
 			}
 //		if(hit()) {
@@ -45,31 +51,44 @@ public class Recruit{
 
 		x = x + xa;
 	}
+	/**
+	 * Metodo para pintar en pantalla.
+	 * @param g
+	 */
 	public void paint(Graphics2D g) {
 		g.setColor(Color.BLUE);
 		g.fillRect(this.x, y, 50, 50);
 		
 	}
-//	public boolean hit() {
-//		return 
-//		
-//	}
+	/**
+	 * Genera un rectangulo, el cual será usado para determinar si dos cuadrados 
+	 * se han intersecado.
+	 * @return
+	 */
 	public Rectangle getBounds() {
 		return new Rectangle(x,y,50,50);
 	}
-	public void mori() {
-		System.out.println("Morí");
+	/**
+	 * Metodo utilizado para eliminar el objeto de la lista.
+	 * Se usa el int generated para identificar que tipo de lista se debe buscar.
+	 * 
+	 */
+	public void die() {
+		//System.out.println("Morí");
 		if(game.generated==1 ) {	
 			game.getBasic().remove(this);}
 		else if(game.generated==2) {
 			game.getDouble().remove(this);}
 	}
-
-	public void lowhealth() {
+	/**
+	 * Metodo utilizado para reducir la vida y llamar el metodo die 
+	 * dependiendo del valor de la vida.
+	 */
+	public void gethit() {
 		this.health -= 1;
 		System.out.println(this.health);
 		if(this.health<=0) {
-			mori();
+			die();
 		}
 		
 	}

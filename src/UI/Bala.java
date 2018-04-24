@@ -30,7 +30,10 @@ public class Bala {
 		g.fillRect(x, y, 15, 30);
 
 	}
-
+	/**
+	 * Se encarga de mover la bala, y al llegar al limite de arriba, se elimina de la
+	 * lista para hacerla más eficiente.
+	 */
 	public void move() {
 		y -= 10;
 //		if(hit()) {
@@ -48,12 +51,20 @@ public class Bala {
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, 15, 30);
 	}
+	/**
+	 * Este metodo es utilizado para detectar si los limites obtenidos por
+	 * getbounds de cada elemento interseca por el getbounds de esta clase, retorna true
+	 * o false dependiento si colisionan o no.
+	 * 
+	 * Si la lista no está vacía procede a ejecutar el código.
+	 * @return
+	 */
 	public boolean hit() {
 		if(!game.getBasic().isEmpty()) {
 			for(int i=0;i<game.getBasic().size();i++) {
 				Recruit temp = game.getBasic().get(i);
 				if(temp.getBounds().intersects(getBounds())) {
-					temp.lowhealth();
+					temp.gethit();
 					return true;
 				}
 			}
@@ -63,7 +74,7 @@ public class Bala {
 				Recruit temp = game.getDouble().get(i);
 				if(temp.getBounds().intersects(getBounds())) {
 					System.out.println("Pegó");
-					temp.lowhealth();
+					temp.gethit();
 					return true;
 				}
 			}

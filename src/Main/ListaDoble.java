@@ -49,38 +49,9 @@ public class ListaDoble <T>{
 		}
 	}
 	/**
-	 * Metodo para borrar datos
+	 * Metodo para eliminar datos específicos.
 	 * @param dato
 	 */
-//	public void remove(T dato){
-//		DoubleNode<T> nodo = this.head;
-//		while(nodo != null){
-//			if(nodo.getObj() == dato){
-//				if(nodo != head && nodo.getNext() == null){
-//					nodo.getPrev().setNext(null);
-//					this.tail = nodo.getPrev();
-//					size --;
-//				}else if(nodo == head){
-//					if(nodo.getNext() == null){
-//						this.head = null;
-//						this.tail = null;
-//						size --;
-//					}else{
-//						this.head = nodo.getNext();
-//						nodo.getNext().setPrev(null);
-//						size --;
-//					}
-//				}else if(nodo != head && nodo.getNext() != null && nodo.getPrev() != null){
-//					nodo.getPrev().setNext(nodo.getNext());
-//					nodo.getNext().setPrev(nodo.getPrev());
-//					size --;
-//				}
-//				break;
-//			}else{
-//				nodo = nodo.getNext();
-//			}
-//		}
-//	}
 	public void remove(T dato) {
 		DoubleNode<T> nodo =this.head;
 		if(nodo.getObj() == dato){
@@ -98,6 +69,9 @@ public class ListaDoble <T>{
 			}
 		}
 	}	
+	/**
+	 *
+	 */
 	public void printList(){
 		DoubleNode<T> actual = this.head;
 		while(actual != null){
@@ -131,23 +105,31 @@ public class ListaDoble <T>{
 	}
 	
 	
-	public void search(T num) {
+	public int search(T num) {
 		position = 0;
 		DoubleNode<T> temp = this.head;
 		while(temp != null){
 			if(temp.getObj() == num){
-				if(temp == this.head) {
-					System.out.println("El numero " + num + " esta en la posicion " + position);
-					break;
-				}else {
-					System.out.println("El numero " + num + " esta en la posicion " + position);
-					break;
+				return position;
 				}
-			}else {
+			else {
 				temp = temp.getNext();
 				position ++;
 			}
 		}
+		return position;
+	}
+	
+	public void changeP(T a,T b) {
+		  T temp1 = get(search(a));
+		  T temp2 = get(search(b));
+		  
+		  DoubleNode<T> nodo = new DoubleNode<>(temp1);
+		  DoubleNode<T> nodo2 = new DoubleNode<>(temp2);
+		  
+		  
+		
+		
 	}
 	
 	 

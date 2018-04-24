@@ -31,7 +31,8 @@ public class DoubleList <T>{
 	}
 
 	/**
-	 * Matodo para añadir datos
+	 * Añade cualquier tipo de dato, haciendo referencias a los nodos
+	 * anterior u siguiente.
 	 * @param dato
 	 */
 	public void add(T dato){
@@ -47,73 +48,51 @@ public class DoubleList <T>{
 		}
 	}
 	/**
-	 * Metodo para borrar datos
 	 * @param dato
 	 */
-//	public void remove(T dato){
-//		DoubleNode<T> nodo = this.head;
-//		while(nodo != null){
-//			if(nodo.getObj() == dato){
-//				if(nodo != head && nodo.getNext() == null){
-//					nodo.getPrev().setNext(null);
-//					this.tail = nodo.getPrev();
-//					size --;
-//				}else if(nodo == head){
-//					if(nodo.getNext() == null){
-//						this.head = null;
-//						this.tail = null;
-//						size --;
-//					}else{
-//						this.head = nodo.getNext();
-//						nodo.getNext().setPrev(null);
-//						size --;
-//					}
-//				}else if(nodo != head && nodo.getNext() != null && nodo.getPrev() != null){
-//					nodo.getPrev().setNext(nodo.getNext());
-//					nodo.getNext().setPrev(nodo.getPrev());
-//					size --;
-//				}
-//				break;
-//			}else{
-//				nodo = nodo.getNext();
-//			}
-//		}
-//	}
+	
 	public void remove(T dato){
-		DoubleNode<T> nodo = this.head;
-		while(nodo != null){
-			if(nodo.getObj() == dato){
-				if(nodo != head && nodo.getNext() == null){
-					nodo.getPrev().setNext(null);
-					this.tail = nodo.getPrev();
+		DoubleNode<T> node = this.head;
+		while(node != null){
+			if(node.getObj() == dato){
+				if(node != head && node.getNext() == null){
+					node.getPrev().setNext(null);
+					this.tail = node.getPrev();
 					size --;
-				}else if(nodo == head){
-					if(nodo.getNext() == null){
+				}else if(node == head){
+					if(node.getNext() == null){
 						this.head = null;
 						this.tail = null;
 						size --;
 					}else{
-						this.head = nodo.getNext();
-						nodo.getNext().setPrev(null);
+						this.head = node.getNext();
+						node.getNext().setPrev(null);
 						size --;
 					}
-				}else if(nodo != head && nodo.getNext() != null && nodo.getPrev() != null){
-					nodo.getPrev().setNext(nodo.getNext());
-					nodo.getNext().setPrev(nodo.getPrev());
+				}else if(node != head && node.getNext() != null && node.getPrev() != null){
+					node.getPrev().setNext(node.getNext());
+					node.getNext().setPrev(node.getPrev());
 					size --;
 				}
 				break;
 			}else{
-				nodo = nodo.getNext();
+				node = node.getNext();
 			}
 		}
 }
-	
-	public void deleteAll() {
+	/**
+	 * Elimina las referencias del head, lo convierte a nulo y cambia el tamaño de lista 
+	 * a 0;
+	 */
+	public void clear() {
 		this.head.setNext(null);
 		this.head = null;
 		this.size =0;
 	}
+	/**
+	 * Si la lista tiene un tamaño 0, devuelve true.
+	 * @return
+	 */
 	public boolean isEmpty() {
 		if(this.size==0) {
 			return true;
@@ -121,7 +100,13 @@ public class DoubleList <T>{
 		else {
 		return false;}
 	}
-	
+	/**
+	 * Obtiene los nodos por su indice y devuelve el objeto asociado
+	 * al mismo.
+	 * 
+	 * @param i
+	 * @return
+	 */
 	
 	public T get(int i) {
 		int cont = 0;
@@ -151,6 +136,10 @@ public class DoubleList <T>{
 				position ++;
 			}
 		}
+	}
+	public void change(int i, int m) {
+		
+		
 	}
 	
 	 

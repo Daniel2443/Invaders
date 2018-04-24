@@ -34,11 +34,11 @@ public class Boss extends Recruit {
 	@Override
 	public void move() {
 		if (x + xa < 50 + n) {
-			xa = 3;
+			xa = 2;
 			y += 100;
 		}
 		if (x + xa > 50 + m) {
-			xa = -3;
+			xa = -2;
 			y += 100;
 		}
 		// if(hit()) {
@@ -47,28 +47,30 @@ public class Boss extends Recruit {
 
 		x = x + xa;
 	}
-//
+//	
+	/**
+	 * El metodo que pinta, no se usa el heredado, por errores no econtrados aun.
+	 * @param g
+	 */
 	public void paint(Graphics2D g) {
 		g.setColor(Color.RED);
 		g.fillRect(this.x, y-20, 70, 70);
 
 	}
-//
-//	// public boolean hit() {
-//	// return
-//	//
-//	// }
-
+	/**
+	 * Genera un rectangulo, el cual será usado para determinar si dos cuadrados 
+	 * se han intersecado.
+	 */
 	public Rectangle getBounds() {
 		return new Rectangle(x, y-20, 70, 70);
 	}    
 	
 //
-////	public void mori() {
-////		System.out.println("Morí");
-////		game.getBasic().remove(this);
-////	}
-////
+//	public void mori() {
+//		System.out.println("Morí");
+//		game.getBasic().remove(this);
+//	}
+//
 //	public void bajarvida() {
 //			this.health -= 1;
 //			System.out.println(this.health);

@@ -28,18 +28,20 @@ public class Server extends Thread {
 		super(msg);
 		this.game = game;
 	}
-
+/**
+ * Este metodo es el que inicializa el server.
+ */
 	public void run() {
 
 		try {
 			server = new ServerSocket(44444);
 
 			while (true) {
-				System.out.println("Esperando...");
+//						System.out.println("Esperando...");
 				cliente = server.accept();
 				entrada = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
 				message = entrada.readLine();
-				System.out.println(message);
+//				System.out.println(message);
 				if (message.equals("D")) {
 					game.getPlayer().moveRight();
 				} else if (message.equals("I")) {

@@ -110,11 +110,11 @@ public class Game extends JPanel {
         switch (numero) {
         case 1: A a = new A(this);
 				a.render();
-				generated=2;;
+				generated=1;;
                  break;
         case 2: Basic ba = new Basic(this);
 				ba.paint();
-				generated=2;;
+				generated=1;;
                  break;
         case 3: B b = new B(this);
 				b.render();
