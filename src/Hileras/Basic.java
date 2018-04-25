@@ -20,6 +20,7 @@ public class Basic {
 		int x=120;
 		int n=0;
 		int m=1100;
+		int b = game.getLevel();
 		while(game.getBasic().size()<5) {
 			game.getBasic().add(new Recruit(game,x,n,m));
 			x+=150;

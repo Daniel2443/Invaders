@@ -14,13 +14,15 @@ import UI.Game;
 
 /**
  * @author Daniel Acuña Mora
+ * @
  *
  */
 public class Recruit{
 	public Game game;
 	int x = 0;
-	int y = 50;
-	int xa = 3;
+	int y = 100;
+	int a = game.level;
+	int xa = a;
 	int ya = 1;
 	int n ,m;
 	int health = 2;
@@ -29,6 +31,7 @@ public class Recruit{
 		this.game = game;
 		this.n = n;
 		this.m = m;
+		this.xa = xa;
 	}
 	/**
 	 * Este metodo es utilizado para determinar las posiciones y limites de
@@ -38,11 +41,11 @@ public class Recruit{
 	 */
 	public void move() {
 		if (x + xa < 50 + n) {
-			xa = 2;
+			xa = a;
 			y+=100;
 		}
 		if (x + xa > 50+m) {
-			xa = -2;
+			xa = -a;
 			y+=100;
 			}
 //		if(hit()) {
@@ -75,7 +78,9 @@ public class Recruit{
 	 */
 	public void die() {
 		//System.out.println("Morí");
+		game.setScore(1);
 		if(game.generated==1 ) {	
+
 			game.getBasic().remove(this);}
 		else if(game.generated==2) {
 			game.getDouble().remove(this);}

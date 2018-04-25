@@ -37,31 +37,25 @@ public class SimpleList<T> {
 			return false;
 		}
 	}
-//	public T (int i) {
-//		SimpleNode<T> temp = this.head;
-//		if(i>this.size) {
-//			new IllegalArgumentException("El numero ingresado no es valido, por que excede el tamaño de la lista");
-//		}
-//		else {
-//			int c=0;
-//			while(c<i) {
-//				temp.linkNext(temp.getNext());
-//			}
-//		}
-//		return temp.getObj();
-//
-//	}
+	
 	public int size() {
 		return this.size;
 	}
-	public void remove(T dato){
+	/**
+	 * Remueve un nodo a partir del objeto que hay en él.
+	 * Compara cada objeto con el introducido, y al encontrarlo 
+	 * elimina el nodo que lo contiene.
+	 * 
+	 * @param obj
+	 */
+	public void remove(T obj){
 		SimpleNode<T> nodo = this.head;
-		if(nodo.getObj() == dato){
+		if(nodo.getObj() == obj){
 			this.head = nodo.getNext();
 			size --;
 		}else{
 			while(nodo.getNext()!= null){
-				if(nodo.getNext().getObj() == dato){
+				if(nodo.getNext().getObj() == obj){
 					nodo.linkNext(nodo.getNext().getNext());
 					size --;
 //					if(nodo.getNext() == null){
@@ -74,7 +68,13 @@ public class SimpleList<T> {
 			}
 		}
 }
-
+	/**
+	 * Obtiene el objeto de un nodo, a partir de un indice especificado.
+	 * Recorre los nodos y cuando llega al nodo deseado retorna el objeto dentro
+	 * de ese nodo.
+	 * @param i
+	 * @return
+	 */
 	public T get(int i){
 	    int count = 0;
 	    SimpleNode<T> temporal = this.head;

@@ -20,8 +20,8 @@ public class Bala {
 
 	public Bala(Game game, int x) {
 		this.game = game;
-		this.x = x + 15;
-		this.y = 600;
+		this.x = x+65;
+		this.y = 800;
 
 	}
 
@@ -35,7 +35,7 @@ public class Bala {
 	 * lista para hacerla más eficiente.
 	 */
 	public void move() {
-		y -= 10;
+		y -= 15;
 //		if(hit()) {
 //			
 //		}
@@ -60,7 +60,7 @@ public class Bala {
 	 * @return
 	 */
 	public boolean hit() {
-		if(!game.getBasic().isEmpty()) {
+		if(!game.getBasic().isEmpty()||!game.getDouble().isEmpty()) {
 			for(int i=0;i<game.getBasic().size();i++) {
 				Recruit temp = game.getBasic().get(i);
 				if(temp.getBounds().intersects(getBounds())) {
@@ -68,8 +68,6 @@ public class Bala {
 					return true;
 				}
 			}
-		}
-		if(!game.getDouble().isEmpty()) {
 			for(int i=0;i<game.getDouble().size();i++) {
 				Recruit temp = game.getDouble().get(i);
 				if(temp.getBounds().intersects(getBounds())) {

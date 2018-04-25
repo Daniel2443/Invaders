@@ -4,7 +4,8 @@
 package Main;
 
 import Android.Server;
-import Hileras.B;
+import Hileras.*;
+import UI.*;
 
 /**
  * @author Daniel Acuña Mora
@@ -19,15 +20,16 @@ import java.net.Socket;
 public class Main{
 
 	
-    public static void main(String[] args) {
-    	ListaDoble b = new ListaDoble<>();
-    	b.add(8);
-    	b.add(9);
-    	b.add(6);
-    	b.add(7);
-    	b.add(9);
-    	b.add(5);
-    	b.printList();
+    public static void main(String[] args) throws InterruptedException {
+    	Game game = new Game();
+    	Menu menu = new Menu(game);
+    	menu.run();
+		while (true) {
+			game.move();
+			game.repaint();
+			Thread.sleep(10);
+		}
+    	
     	
     }
 

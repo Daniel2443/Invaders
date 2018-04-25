@@ -14,69 +14,61 @@ import UI.Game;
  *
  */
 public class Boss extends Recruit {
-	public Game game;
-	int x = 0;
-	int y = 50;
-	int xa = 3;
-	int ya = 1;
-	int n, m;
-	int health = 50;
 
-	public Boss(Game game,int x,int n,int m) {
-			super(game,x,n,m);
-			super.health=5;
-			this.x = x;
-			this.game = game;
-			this.n = n;
-			this.m = m;
-		}
-//
-	@Override
-	public void move() {
-		if (x + xa < 50 + n) {
-			xa = 2;
-			y += 100;
-		}
-		if (x + xa > 50 + m) {
-			xa = -2;
-			y += 100;
-		}
-		// if(hit()) {
-		// System.out.println("Pegó");
-		// }
-
-		x = x + xa;
+	public Boss(Game game, int x, int n, int m) {
+		super(game, x, n, m);
+		super.health = 5;
+		this.x = x;
+		this.game = game;
+		this.n = n;
+		this.m = m;
 	}
-//	
+
+	//
+	// @Override
+	// public void move() {
+	// if (x + xa < 50 + n) {
+	// xa = 2;
+	// y += 100;
+	// }
+	// if (x + xa > 50 + m) {
+	// xa = -2;
+	// y += 100;
+	// }
+	// // if(hit()) {
+	// // System.out.println("Pegó");
+	// // }
+	//
+	// x = x + xa;
+	// }
+	public void die() {
+		System.out.println("Morí");
+		game.setScore(2);
+		if (game.generated == 1) {
+
+			game.getBasic().remove(this);
+		} else if (game.generated == 2) {
+			game.getDouble().remove(this);
+		}
+	}
+
 	/**
 	 * El metodo que pinta, no se usa el heredado, por errores no econtrados aun.
+	 * 
 	 * @param g
 	 */
 	public void paint(Graphics2D g) {
 		g.setColor(Color.RED);
-		g.fillRect(this.x, y-20, 70, 70);
+		g.fillRect(this.x, y - 20, 70, 70);
 
 	}
+
 	/**
-	 * Genera un rectangulo, el cual será usado para determinar si dos cuadrados 
-	 * se han intersecado.
+	 * Genera un rectangulo, el cual será usado para determinar si dos cuadrados se
+	 * han intersecado.
 	 */
 	public Rectangle getBounds() {
-		return new Rectangle(x, y-20, 70, 70);
-	}    
-	
-//
-//	public void mori() {
-//		System.out.println("Morí");
-//		game.getBasic().remove(this);
-//	}
-//
-//	public void bajarvida() {
-//			this.health -= 1;
-//			System.out.println(this.health);
-//			if(this.health==0) {
-//				mori();
-//			}
-//			
-//		}
+		return new Rectangle(x, y - 20, 70, 70);
+	}
+
 }
