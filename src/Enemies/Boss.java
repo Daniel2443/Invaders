@@ -6,22 +6,27 @@ package Enemies;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 import UI.Game;
+import UI.Image;
 
 /**
  * @author Daniel Acuña Mora
  *
  */
 public class Boss extends Recruit {
-
-	public Boss(Game game, int x, int n, int m) {
-		super(game, x, n, m);
+	private Image imga = new Image();
+	private Game game;
+	BufferedImage img = imga.image("boss");
+	public Boss(Game game, int x, int n, int m,int id) {
+		super(game, x, n, m,id);
 		super.health = 5;
 		this.x = x;
 		this.game = game;
 		this.n = n;
 		this.m = m;
+		this.Id = id;
 	}
 
 	//
@@ -43,10 +48,14 @@ public class Boss extends Recruit {
 	// }
 	public void die() {
 		System.out.println("Morí");
-		game.setScore(2);
 		if (game.generated == 1) {
+			if(game.getBasic().size()>=2) {
+				game.setScore(4);
+			}else {
+				game.setScore(2);
+			}
+			game.getBasic().clear();
 
-			game.getBasic().remove(this);
 		} else if (game.generated == 2) {
 			game.getDouble().remove(this);
 		}
@@ -58,8 +67,9 @@ public class Boss extends Recruit {
 	 * @param g
 	 */
 	public void paint(Graphics2D g) {
-		g.setColor(Color.RED);
-		g.fillRect(this.x, y - 20, 70, 70);
+		g.drawImage(img,x, y, 156, 144, game);
+//		g.setColor(Color.RED);
+//		g.fillRect(this.x, y - 20, 70, 70);
 
 	}
 
@@ -68,7 +78,7 @@ public class Boss extends Recruit {
 	 * han intersecado.
 	 */
 	public Rectangle getBounds() {
-		return new Rectangle(x, y - 20, 70, 70);
+		return new Rectangle(x, y,120, 20);
 	}
 
 }

@@ -22,14 +22,22 @@ public class Main{
 	
     public static void main(String[] args) throws InterruptedException {
     	Game game = new Game();
-    	Menu menu = new Menu(game);
-    	menu.run();
+
+    	game.run();
 		while (true) {
 			game.move();
 			game.repaint();
-			Thread.sleep(10);
+			Thread.sleep(5);
 		}
-    	
+//    	
+//    	GameWindow gw = new GameWindow();
+//    	gw.init();
+//    	gw.game.enemy();
+//    	while(true) {
+//    		gw.game.move();
+//    		gw.game.repaint();
+//    		
+//    	}
     	
     }
 

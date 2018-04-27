@@ -10,6 +10,7 @@ package Lists;
 public class SimpleList<T> {
 	private SimpleNode<T> head;
 	private int size=0;
+	private String type;
 
 	public void add(T obj) {
 		this.size +=1;
@@ -24,6 +25,10 @@ public class SimpleList<T> {
 
 		}
 
+	}
+	public void clear() {
+		this.head = null;
+		this.size= 0;
 	}
 
 	public T getFirst() {
@@ -84,6 +89,18 @@ public class SimpleList<T> {
 	        count++;
 	    }
 	    return temporal.getObj();
+	}
+	/**
+	 * @return the type
+	 */
+	public String getType() {
+		return type;
+	}
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 }

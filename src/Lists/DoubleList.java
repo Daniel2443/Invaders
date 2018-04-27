@@ -14,6 +14,7 @@ public class DoubleList <T>{
 	public int positionEnemy;
 	public int positionBoss;
 	public int position;
+	private String type;
 	public DoubleList(){
 		this.head = null;
 		this.tail = null;
@@ -140,6 +141,18 @@ public class DoubleList <T>{
 	public void change(int i, int m) {
 		
 		
+	}
+	/**
+	 * @return the type
+	 */
+	public String getType() {
+		return type;
+	}
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	 

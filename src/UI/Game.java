@@ -3,14 +3,23 @@
  */
 package UI;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.imageio.ImageIO;
+import javax.print.attribute.standard.Media;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,46 +34,54 @@ public class Game extends JPanel {
 	public static final int WIDTH = 1900;
 	public static final int HEIGHT = 1000;
 	public Graphics2D g;
-	private int score=0;
-	public static int level=1;
-	
+	private int score = 0;
+	public static int level = 1;
+
 	public Functions fn = new Functions();
 	private Player player = new Player(this);
 	private SimpleList<Recruit> basic = new SimpleList<>();
 	private DoubleList<Recruit> Double = new DoubleList<Recruit>();
-	public int generated =0;
-	
+	public int generated = 0;
+
 	/**
 	 * @return the double
 	 */
 	public DoubleList<Recruit> getDouble() {
 		return Double;
 	}
+
 	public int getScore() {
 		return score;
 	}
+
 	/**
-	 * @param socore, the score to set
+	 * @param socore,
+	 *            the score to set
 	 */
 	public void setScore(int puntos) {
-		this.score+=puntos;
+		this.score += puntos;
 	}
 
 	public int getLevel() {
 		return level;
 	}
+
 	/**
-	 * @param level the level to set
+	 * @param level
+	 *            the level to set
 	 */
 	public void setLevel(int level) {
-		this.level +=level;
+		this.level += level;
 	}
+
 	public Player getPlayer() {
 		return this.player;
-	} 
- 	public SimpleList<Recruit> getBasic(){
- 		return this.basic;
- 	}
+	}
+
+	public SimpleList<Recruit> getBasic() {
+		return this.basic;
+	}
+
 	public Game() {
 
 		addKeyListener(new KeyListener() {
@@ -83,58 +100,57 @@ public class Game extends JPanel {
 			}
 		});
 		setFocusable(true);
+		setVisible(true);
+
+
 	}
 
-	public void move(){
+	public void move() {
 		player.move();
-		if (!(getBasic().isEmpty())||!(getDouble().isEmpty())) {
+		if (!(getBasic().isEmpty()) || !(getDouble().isEmpty())) {
 			for (int i = 0; i < getBasic().size(); i++) {
-				getBasic().get(i).move();		}					
+				getBasic().get(i).move();
+			}
 			for (int j = 0; j < getDouble().size(); j++) {
 				getDouble().get(j).move();
-			
+
 			}
-		}else {
+		} else {
 			enemy();
 			level++;
 		}
 	}
-	BufferedImage img;
+
+	Image imgi = new Image();
+	BufferedImage img = imgi.image("bg");
 
 	@Override
 	public void paint(Graphics g) {
-		JPanel p = new JPanel();
-
-		try {
-			img = ImageIO.read(new File("C:\\Users\\Danie\\Pictures\\ANDROID//bg.png"));
-
-		}catch(IOException ex) {
-		}
-		
 		super.paint(g);
-		
-		
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.drawImage(img, 0, 0,WIDTH,HEIGHT, this);
+
+		g2d.drawImage(img, 0, 0, WIDTH, HEIGHT, this);
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		player.paint(g2d);
 		g2d.setColor(Color.WHITE);
 		g2d.setFont(new Font("Minecraft", Font.BOLD, 30));
-		g2d.drawString("Nivel: "+String.valueOf(getLevel()), 250, 50);
+		g2d.drawString("Level: " + String.valueOf(getLevel()), 250, 50);
+		g2d.drawString("Score: " + String.valueOf(getScore()), 500, 50);
+		g2d.drawString("Currente Type: " + getHilera(), 750, 50);
+		g2d.drawString("Next Type: " + getNextHilera(), 1250, 50);
 
-		g2d.drawString("Puntos: "+String.valueOf(getScore()), 500, 50);
-		
+		player.paint(g2d);
+
 		if (!(getBasic().isEmpty())) {
-			
+
 			for (int i = 0; i < getBasic().size(); i++) {
 				getBasic().get(i).paint(g2d);
-			
+
 			}
 		}
 		if (!(getDouble().isEmpty())) {
 			for (int i = 0; i < getDouble().size(); i++) {
 				getDouble().get(i).paint(g2d);
-			
+
 			}
 		}
 
@@ -143,31 +159,88 @@ public class Game extends JPanel {
 	/**
 	 * @return the width
 	 */
+//	public String hilera() {
+//		if (!getBasic().isEmpty()) {
+//			return getBasic().getType();
+//		}
+//		if (!getDouble().isEmpty()) {
+//			return getDouble().getType();
+//		}
+//		return "No hay nada";
+//	}
+
 	public int getWidth() {
 		return WIDTH;
 	}
 
+	public void restart() {
+		if (!getBasic().isEmpty()) {
+			getBasic().clear();
+
+		} else if (!getDouble().isEmpty()) {
+			getDouble().clear();
+		}
+		this.level = 0;
+		this.score = 0;
+		enemy();
+		Sound.GAME.loop();
+
+	}
+
+	int n = 3;
+	int current; 
+	int next;
+	public String getHilera() {
+		switch (current) {
+		case 1:return "A";
+		case 2:return "Basic";
+		case 3:return "B";
+		case 4:;break;
+		case 5:;break;
+		}
+		return "No hay Hileras";
+	}
+	public String getNextHilera() {
+		switch (next) {
+		case 1:return "A";
+		case 2:return "Basic";
+		case 3:return "B";
+		case 4:;break;
+		case 5:;break;
+		}
+		return "No hay Hileras";
+	}
+
 	public void enemy() {
-		int n = 3;
-		int numero = (int) (Math.random() * n) + 1;
-        switch (numero) {
-        case 1: A a = new A(this);
-				a.render();
-				generated=1;;
-                 break;
-        case 2: Basic ba = new Basic(this);
-				ba.paint();
-				generated=1;;
-                 break;
-        case 3: B b = new B(this);
-				b.render();
-				generated=2; ;
-                 break;
-        case 4:  ;
-                 break;
-        case 5:  ;
-                 break;
-    }
+		current = (int)(Math.random() * n) + 1;
+		next = (int) (Math.random() * n) + 1;
+		switch (current) {
+		case 1:
+			A a = new A(this);
+			a.render();
+			generated = 1;
+			;
+			break;
+		case 2:
+			Basic ba = new Basic(this);
+			ba.paint();
+			generated = 1;
+	
+			;
+			break;
+		case 3:
+			B b = new B(this);
+			b.render();
+			generated = 2;
+			;
+			break;
+		case 4:
+			;
+			break;
+		case 5:
+			;
+			break;
+		}
 	}
 
 	/**
@@ -176,28 +249,30 @@ public class Game extends JPanel {
 	public int getHeight() {
 		return HEIGHT;
 	}
+
 	public void server() {
-		Server server = new Server("Proceso",this);
+		Server server = new Server("Proceso", this);
 		server.start();
+		
 	}
-	
-//	public static void main(String[] args) throws InterruptedException {
-//		JFrame frame = new JFrame("Invaders ");
-//		Game game = new Game();
-//		frame.add(game);
-//		frame.setSize(WIDTH, HEIGHT);
-//		frame.setVisible(true);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.setLocationRelativeTo(null);
-//		game.enemy();
-//		game.server();
-//		while (true) {
-//			game.move();
-//			game.repaint();
-//			Thread.sleep(10);
-//		}
-//	}
-	public void run(){
+
+	// public static void main(String[] args) throws InterruptedException {
+	// JFrame frame = new JFrame("Invaders ");
+	// Game game = new Game();
+	// frame.add(game);
+	// frame.setSize(WIDTH, HEIGHT);
+	// frame.setVisible(true);
+	// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	// frame.setLocationRelativeTo(null);
+	// game.enemy();
+	// game.server();
+	// while (true) {
+	// game.move();
+	// game.repaint();
+	// Thread.sleep(10);
+	// }
+	// }
+	public void run() {
 		JFrame frame = new JFrame("Invaders ");
 		frame.add(this);
 		frame.setSize(WIDTH, HEIGHT);
@@ -206,7 +281,8 @@ public class Game extends JPanel {
 		frame.setLocationRelativeTo(null);
 		enemy();
 		server();
-		this.level =1;
+		Sound.GAME.loop();
+		this.level = 1;
 
 	}
 }
