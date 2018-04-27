@@ -51,14 +51,22 @@ public class Boss extends Recruit {
 		if (game.generated == 1) {
 			if(game.getBasic().size()>=2) {
 				game.setScore(4);
+				//game.reArrange();
+
 			}else {
 				game.setScore(2);
+				//game.reArrange();
+
 			}
 			game.getBasic().clear();
 
 		} else if (game.generated == 2) {
 			game.getDouble().remove(this);
+			//game.reArrange();
+
 		}
+		game.reArrange();
+
 	}
 
 	/**
@@ -67,7 +75,7 @@ public class Boss extends Recruit {
 	 * @param g
 	 */
 	public void paint(Graphics2D g) {
-		g.drawImage(img,x, y, 156, 144, game);
+		g.drawImage(img,x, y-10, 156, 144, game);
 //		g.setColor(Color.RED);
 //		g.fillRect(this.x, y - 20, 70, 70);
 

@@ -26,12 +26,12 @@ public class Recruit {
 	private Image imgi = new Image();
 
 	public Game game;
-	int x = 0;
+	public int x = 0;
 	int y = 100;
 	int a = game.level;
 	int xa = a;
 	int ya = 1;
-	int n, m;
+	public int n, m;
 	int health = 2;
 	protected int Id;
 	BufferedImage img = imgi.image("basic");
@@ -103,12 +103,12 @@ public class Recruit {
 	 */
 	public void die() {
 		// System.out.println("Morí");
-		
 		game.setScore(1);
 		if (game.generated == 1) {
 			
 			if (this.getId() == 2) {
 				game.getBasic().clear();
+
 			} else {
 				game.getBasic().remove(this);
 			}
@@ -118,6 +118,8 @@ public class Recruit {
 		else if (game.generated == 2) {
 			game.getDouble().remove(this);
 		}
+		game.reArrange();
+
 	}
 
 	public int getId() {
@@ -130,7 +132,7 @@ public class Recruit {
 	 */
 	public void gethit() {
 		this.health -= 1;
-		System.out.println(this.health);
+		//System.out.println(this.health);
 		if (this.health <= 0) {
 			die();
 		}

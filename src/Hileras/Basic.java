@@ -19,14 +19,12 @@ public class Basic {
 	public void paint() {
 		int x=120;
 		int n=0;
-		int m=1100;
-		int b = game.getLevel();
-		game.getBasic().setType("Basic");
+		int m=1020;
 		while(game.getBasic().size()<5) {
 			game.getBasic().add(new Recruit(game,x,n,m,1));
-			x+=150;
-			n+=150;
-			m+=150;
+			x+=170;
+			n+=170;
+			m+=170;
 		}
 	}
 }

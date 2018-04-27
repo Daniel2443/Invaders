@@ -102,7 +102,6 @@ public class Game extends JPanel {
 		setFocusable(true);
 		setVisible(true);
 
-
 	}
 
 	public void move() {
@@ -156,18 +155,60 @@ public class Game extends JPanel {
 
 	}
 
+	public void reArrange() {
+		int i = 0;
+		int n = 0;
+		int m = limits();
+		if (getBasic().size() != 0) {
+			int xa = getBasic().get(0).x;
+			while (i < getBasic().size()) {
+				getBasic().get(i).x = xa;
+				getBasic().get(i).n = n;
+				getBasic().get(i).m = m;
+				xa += 170;
+				n += 170;
+				m += 170;
+				i++;
+			}
+
+		}
+		if(getDouble().size() != 0) {
+			int xb = getDouble().get(0).x;
+			while(i < getDouble().size()) {
+				getDouble().get(i).x = xb;
+				getDouble().get(i).n = n;
+				getDouble().get(i).m = m;
+				xb += 170;
+				n += 170;
+				m += 170;
+				i++;
+			}
+	}}
+
+	public int limits() {
+		if (getBasic().size() == 4 | getDouble().size() == 4) {
+			return 1170;
+		} else if (getBasic().size() == 3 | getDouble().size() == 3) {
+			return 1320;
+		} else if (getBasic().size() == 2 | getDouble().size() == 2) {
+			return 1470;
+		} else {
+			return 1620;
+		}
+	}
+
 	/**
 	 * @return the width
 	 */
-//	public String hilera() {
-//		if (!getBasic().isEmpty()) {
-//			return getBasic().getType();
-//		}
-//		if (!getDouble().isEmpty()) {
-//			return getDouble().getType();
-//		}
-//		return "No hay nada";
-//	}
+	// public String hilera() {
+	// if (!getBasic().isEmpty()) {
+	// return getBasic().getType();
+	// }
+	// if (!getDouble().isEmpty()) {
+	// return getDouble().getType();
+	// }
+	// return "No hay nada";
+	// }
 
 	public int getWidth() {
 		return WIDTH;
@@ -188,31 +229,47 @@ public class Game extends JPanel {
 	}
 
 	int n = 3;
-	int current; 
+	int current;
 	int next;
+
 	public String getHilera() {
 		switch (current) {
-		case 1:return "A";
-		case 2:return "Basic";
-		case 3:return "B";
-		case 4:;break;
-		case 5:;break;
+		case 1:
+			return "A";
+		case 2:
+			return "Basic";
+		case 3:
+			return "B";
+		case 4:
+			;
+			break;
+		case 5:
+			;
+			break;
 		}
 		return "No hay Hileras";
 	}
+
 	public String getNextHilera() {
 		switch (next) {
-		case 1:return "A";
-		case 2:return "Basic";
-		case 3:return "B";
-		case 4:;break;
-		case 5:;break;
+		case 1:
+			return "A";
+		case 2:
+			return "Basic";
+		case 3:
+			return "B";
+		case 4:
+			;
+			break;
+		case 5:
+			;
+			break;
 		}
 		return "No hay Hileras";
 	}
 
 	public void enemy() {
-		current = (int)(Math.random() * n) + 1;
+		current = (int) (Math.random() * n) + 1;
 		next = (int) (Math.random() * n) + 1;
 		switch (current) {
 		case 1:
@@ -225,7 +282,7 @@ public class Game extends JPanel {
 			Basic ba = new Basic(this);
 			ba.paint();
 			generated = 1;
-	
+
 			;
 			break;
 		case 3:
@@ -253,7 +310,7 @@ public class Game extends JPanel {
 	public void server() {
 		Server server = new Server("Proceso", this);
 		server.start();
-		
+
 	}
 
 	// public static void main(String[] args) throws InterruptedException {

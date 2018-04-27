@@ -9,6 +9,8 @@ package Lists;
  */
 public class SimpleList<T> {
 	private SimpleNode<T> head;
+	private SimpleNode<T> tail;
+
 	private int size=0;
 	private String type;
 
@@ -17,11 +19,12 @@ public class SimpleList<T> {
 
 		if (head == null) {
 			this.head = new SimpleNode<T>(obj);
+			this.tail = head;
 		} else {
-			SimpleNode<T> temp = this.head;
-			SimpleNode<T> node = new SimpleNode<T>(obj);
-			node.linkNext(temp);
-			this.head = node;
+			SimpleNode<T> temp = this.tail;
+			temp.linkNext(new SimpleNode<T>(obj) );
+			this.tail = temp.getNext(); 
+			//this.head = node;
 
 		}
 

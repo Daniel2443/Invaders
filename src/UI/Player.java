@@ -30,7 +30,7 @@ public class Player extends Frame {
 
 	int x;
 	int y = 800;
-	int xa = 0;
+	public static int xa = 0;
 	private Graphics2D g;
 
 	ArrayList<Bala> bala;
@@ -136,18 +136,7 @@ public class Player extends Frame {
 			xa = 5;
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
 			shoot();
-	}
-
-	public void moveRight() {
-		xa = 5;
-	}
-
-	public void moveLeft() {
-		xa = -5;
-	}
-
-	public void idle() {
-		xa = 0;
+			shoot = false;
 	}
 	
 	public Rectangle getBounds() {

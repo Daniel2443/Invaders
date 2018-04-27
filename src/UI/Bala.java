@@ -71,7 +71,7 @@ public class Bala {
 			for(int i=0;i<game.getDouble().size();i++) {
 				Recruit temp = game.getDouble().get(i);
 				if(temp.getBounds().intersects(getBounds())) {
-					System.out.println("Pegó");
+					//System.out.println("Pegó");
 					temp.gethit();
 					return true;
 				}
