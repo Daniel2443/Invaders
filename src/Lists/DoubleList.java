@@ -3,6 +3,9 @@
  */
 package Lists;
 
+import Enemies.Recruit;
+import UI.Game;
+
 /**
  * @author Daniel Acuña Mora
  *
@@ -36,14 +39,14 @@ public class DoubleList <T>{
 	 * anterior u siguiente.
 	 * @param dato
 	 */
-	public void add(T dato){
+	public void add(T dato,int id){
 		size ++;
 		if(this.head == null){
-			this.head = new DoubleNode<T>(dato);
+			this.head = new DoubleNode<T>(dato,id);
 			this.tail = head;
 		}else{
 			DoubleNode<T> temp = this.tail;
-			temp.setNext(new DoubleNode<T>(dato));
+			temp.setNext(new DoubleNode<T>(dato,id));
 			temp.getNext().setPrev(temp);
 			this.tail = temp.getNext();
 		}
@@ -120,28 +123,28 @@ public class DoubleList <T>{
 	}
 	
 	
-	public void search(T num) {
-		position = 0;
-		DoubleNode<T> temp = this.head;
-		while(temp != null){
-			if(temp.getObj() == num){
-				if(temp == this.head) {
-					System.out.println("El numero " + num + " esta en la posicion " + position);
-					break;
-				}else {
-					System.out.println("El numero " + num + " esta en la posicion " + position);
-					break;
-				}
-			}else {
-				temp = temp.getNext();
-				position ++;
-			}
-		}
-	}
-	public void change(int i, int m) {
-		
-		
-	}
+//	public void search(T num) {
+//		position = 0;
+//		DoubleNode<T> temp = this.head;
+//		while(temp != null){
+//			if(temp.getObj() == num){
+//				if(temp == this.head) {
+//					System.out.println("El numero " + num + " esta en la posicion " + position);
+//					break;
+//				}else {
+//					System.out.println("El numero " + num + " esta en la posicion " + position);
+//					break;
+//				}
+//			}else {
+//				temp = temp.getNext();
+//				position ++;
+//			}
+//		}
+//	}
+//	public void change2(int i, int m) {
+//		
+//		
+//	}
 	/**
 	 * @return the type
 	 */
@@ -153,7 +156,59 @@ public class DoubleList <T>{
 	 */
 	public void setType(String type) {
 		this.type = type;
+	}	
+	public void search(int e) {
+		position = 0;
+		DoubleNode<T> temp = this.head;
+		while(temp != null){
+			if(temp.ID == e){
+				break;
+			}else {
+				temp = temp.getNext();
+				position ++;
+			}
+		}
+		if (Game.getDouble().size == position) {
+			position = 0;
+		}
 	}
+	public DoubleNode<T> getNodo(int i) {
+		int cont = 0;
+		DoubleNode<T> temp = this.head;
+		while(cont < i) {
+			temp = temp.getNext();
+			cont ++;
+		}
+		return temp;
+}
+	public void change(int boss, int enemy) {
+		search(boss);
+		positionBoss = position;
+		System.out.println(positionBoss);
+		search(enemy);
+		positionEnemy = position;
+		System.out.println(positionEnemy);
+		Recruit temp = Game.getDouble().getNodo(positionBoss).getObj();
+		Recruit temp1 = Game.getDouble().getNodo(positionEnemy).getObj();
+		Game.getDouble().getNodo(positionEnemy).setObj(temp);
+		Game.getDouble().getNodo(positionBoss).setObj(temp1);
+		int n1 = temp.n;
+		int n2 = temp1.n;
+		int m1 = temp.m;
+		int m2 = temp1.m;
+		int x1 = temp.x;
+		int x2 = temp1.x;
+		int ID1 = temp.ID;
+		int ID2 = temp.ID;
+		temp.n = n2;
+		temp1.n = n1;
+		temp.m = m2;
+		temp1.m = m1;
+		temp.x = x2;
+		temp1.x = x1;
+		temp.ID = ID2;
+		temp1.ID = ID1;
+}
 	
 	 
 }

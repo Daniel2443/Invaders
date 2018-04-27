@@ -26,7 +26,7 @@ public class Boss extends Recruit {
 		this.game = game;
 		this.n = n;
 		this.m = m;
-		this.Id = id;
+		this.ID = id;
 	}
 
 	//

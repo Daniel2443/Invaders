@@ -23,6 +23,8 @@ import UI.Image;
  *
  */
 public class Recruit {
+	public static int ID = 0;
+
 	private Image imgi = new Image();
 
 	public Game game;
@@ -33,7 +35,6 @@ public class Recruit {
 	int ya = 1;
 	public int n, m;
 	int health = 2;
-	protected int Id;
 	BufferedImage img = imgi.image("basic");
 
 	public Recruit(Game game, int x, int n, int m, int id) {
@@ -42,7 +43,7 @@ public class Recruit {
 		this.n = n;
 		this.m = m;
 		this.xa = xa;
-		this.Id = id;
+		this.ID= id;
 	}
 
 	/**
@@ -123,7 +124,7 @@ public class Recruit {
 	}
 
 	public int getId() {
-		return Id;
+		return ID;
 	}
 
 	/**

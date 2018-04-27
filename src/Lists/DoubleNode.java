@@ -9,6 +9,7 @@ package Lists;
  *
  */
 public class DoubleNode<T> {
+	public static int ID;
 	private T obj;
 	private DoubleNode<T> next;
 	private DoubleNode<T> prev;
@@ -18,10 +19,11 @@ public class DoubleNode<T> {
 	 * @param next
 	 * @param prev
 	 */
-	public DoubleNode(T name) {
+	public DoubleNode(T name,int id) {
 		this.setObj(name);
 		this.next=null;
 		this.prev=null;
+		this.ID = id;
 	}
 
 	public void setNext(DoubleNode<T> next) {

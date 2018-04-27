@@ -23,15 +23,23 @@ public class B {
 		int x = 120;
 		int n = 0;
 		int m = 1020;
+		int id=1;
+		game.index.add(1, 2);
+		game.index.add(2, 2);
+		game.index.add(3, 2);
+		game.index.add(4, 2);
+
+		
 
 		while (game.getDouble().size() < 5) {
-			if (game.getDouble().size() != 3) {
-				game.getDouble().add(new Recruit(game, x, n, m,1));
+			if (game.getDouble().size()+1 != 3) {
+				game.getDouble().add(new Recruit(game, x, n, m,id),id);
 				x += 170;
 				n += 170;
 				m += 170;
+				id++;
 			} else {
-				game.getDouble().add(new Boss(game, x, n, m,2));
+				game.getDouble().add(new Boss(game, x, n, m,0),0);
 				x += 170;
 				n += 170;
 				m += 170;

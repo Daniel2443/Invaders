@@ -14,6 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.print.attribute.standard.Media;
@@ -40,13 +41,13 @@ public class Game extends JPanel {
 	public Functions fn = new Functions();
 	private Player player = new Player(this);
 	private SimpleList<Recruit> basic = new SimpleList<>();
-	private DoubleList<Recruit> Double = new DoubleList<Recruit>();
+	private static DoubleList<Recruit> Double = new DoubleList<Recruit>();
 	public int generated = 0;
 
 	/**
 	 * @return the double
 	 */
-	public DoubleList<Recruit> getDouble() {
+	public static DoubleList<Recruit> getDouble() {
 		return Double;
 	}
 
@@ -104,7 +105,21 @@ public class Game extends JPanel {
 
 	}
 
+	public DoubleList<Integer> index = new DoubleList<Integer>();
+	public int counter = 1;
+
+	public void swap() {
+		counter++;
+		if (counter % 2 == 0) {
+			Random random = new Random();
+			int select = random.nextInt(index.size() + 1);
+			int rnd = index.getNodo(select - 1).getObj();
+			getDouble().change(0, rnd);
+		}
+	}
+
 	public void move() {
+		swap();
 		player.move();
 		if (!(getBasic().isEmpty()) || !(getDouble().isEmpty())) {
 			for (int i = 0; i < getBasic().size(); i++) {
@@ -172,9 +187,9 @@ public class Game extends JPanel {
 			}
 
 		}
-		if(getDouble().size() != 0) {
+		if (getDouble().size() != 0) {
 			int xb = getDouble().get(0).x;
-			while(i < getDouble().size()) {
+			while (i < getDouble().size()) {
 				getDouble().get(i).x = xb;
 				getDouble().get(i).n = n;
 				getDouble().get(i).m = m;
@@ -183,7 +198,8 @@ public class Game extends JPanel {
 				m += 170;
 				i++;
 			}
-	}}
+		}
+	}
 
 	public int limits() {
 		if (getBasic().size() == 4 | getDouble().size() == 4) {
@@ -269,7 +285,7 @@ public class Game extends JPanel {
 	}
 
 	public void enemy() {
-		current = (int) (Math.random() * n) + 1;
+		current = 3;
 		next = (int) (Math.random() * n) + 1;
 		switch (current) {
 		case 1:

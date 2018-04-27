@@ -25,9 +25,11 @@ public class Main{
 
     	game.run();
 		while (true) {
+
 			game.move();
 			game.repaint();
 			Thread.sleep(5);
+			
 		}
 //    	
 //    	GameWindow gw = new GameWindow();

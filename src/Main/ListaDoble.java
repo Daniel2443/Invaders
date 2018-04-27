@@ -36,14 +36,14 @@ public class ListaDoble <T>{
 	 * Matodo para añadir datos
 	 * @param dato
 	 */
-	public void add(T dato){
+	public void add(T dato,int id){
 		size ++;
 		if(this.head == null){
-			this.head = new DoubleNode<T>(dato);
+			this.head = new DoubleNode<T>(dato,id);
 			this.tail = head;
 		}else{
 			DoubleNode<T> temp = this.tail;
-			temp.setNext(new DoubleNode<T>(dato));
+			temp.setNext(new DoubleNode<T>(dato,id));
 			temp.getNext().setPrev(temp);
 			this.tail = temp.getNext();
 		}
