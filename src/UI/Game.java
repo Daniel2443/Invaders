@@ -37,7 +37,7 @@ public class Game extends JPanel {
 	public Graphics2D g;
 	private int score = 0;
 	public static int level = 1;
-
+	public boolean ruuning;
 	public Functions fn = new Functions();
 	private Player player = new Player(this);
 	private SimpleList<Recruit> basic = new SimpleList<>();
@@ -84,7 +84,6 @@ public class Game extends JPanel {
 	}
 
 	public Game() {
-
 		addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -107,19 +106,19 @@ public class Game extends JPanel {
 
 	public DoubleList<Integer> index = new DoubleList<Integer>();
 	public int counter = 1;
-
-	public void swap() {
-		counter++;
-		if (counter % 2 == 0) {
-			Random random = new Random();
-			int select = random.nextInt(index.size() + 1);
-			int rnd = index.getNodo(select - 1).getObj();
-			getDouble().change(0, rnd);
-		}
-	}
+	//
+	// public void swap() {
+	// counter++;
+	// if (counter % 2 == 0) {
+	// Random random = new Random();
+	// int select = random.nextInt(index.size() + 1);
+	// int rnd = index.getNodo(select - 1).getObj();
+	// getDouble().change(0, rnd);
+	// }
+	// }
 
 	public void move() {
-		swap();
+		// swap();
 		player.move();
 		if (!(getBasic().isEmpty()) || !(getDouble().isEmpty())) {
 			for (int i = 0; i < getBasic().size(); i++) {
@@ -130,7 +129,9 @@ public class Game extends JPanel {
 
 			}
 		} else {
+			this.current = this.next;
 			enemy();
+			
 			level++;
 		}
 	}
@@ -201,6 +202,12 @@ public class Game extends JPanel {
 		}
 	}
 
+	/**
+	 * Esta funcion deifine los limites segun la cantidad de enemigos restantes,
+	 * para asi poder reordenarlos.
+	 * 
+	 * @return
+	 */
 	public int limits() {
 		if (getBasic().size() == 4 | getDouble().size() == 4) {
 			return 1170;
@@ -214,22 +221,18 @@ public class Game extends JPanel {
 	}
 
 	/**
+	 * 
 	 * @return the width
 	 */
-	// public String hilera() {
-	// if (!getBasic().isEmpty()) {
-	// return getBasic().getType();
-	// }
-	// if (!getDouble().isEmpty()) {
-	// return getDouble().getType();
-	// }
-	// return "No hay nada";
-	// }
 
 	public int getWidth() {
 		return WIDTH;
 	}
 
+	/**
+	 * Este codigo elimina todo de las listas, resetea las variables y "resetea" el
+	 * juego.
+	 */
 	public void restart() {
 		if (!getBasic().isEmpty()) {
 			getBasic().clear();
@@ -245,9 +248,16 @@ public class Game extends JPanel {
 	}
 
 	int n = 3;
-	int current;
-	int next;
+	public int current=(int) (Math.random() * n) + 1;;
+	public int next;
 
+	/**
+	 * Esto usa el current, el cual es utilizado para generar los enemigos. Y
+	 * dependiendo el numero devuelve un string que se utiliza en el label de
+	 * "Hilera Actual" o Current Type.
+	 * 
+	 * @return
+	 */
 	public String getHilera() {
 		switch (current) {
 		case 1:
@@ -284,8 +294,12 @@ public class Game extends JPanel {
 		return "No hay Hileras";
 	}
 
+	/**
+	 * convierte el current en un numero random del 1 al 3, y así en el swuitch se
+	 * procede a generar los enemigos.
+	 */
 	public void enemy() {
-		current = 3;
+		//current = (int) (Math.random() * n) + 1;
 		next = (int) (Math.random() * n) + 1;
 		switch (current) {
 		case 1:
@@ -314,6 +328,7 @@ public class Game extends JPanel {
 			;
 			break;
 		}
+		
 	}
 
 	/**
@@ -323,28 +338,19 @@ public class Game extends JPanel {
 		return HEIGHT;
 	}
 
+	/**
+	 * inicializa el server
+	 */
 	public void server() {
 		Server server = new Server("Proceso", this);
 		server.start();
 
 	}
 
-	// public static void main(String[] args) throws InterruptedException {
-	// JFrame frame = new JFrame("Invaders ");
-	// Game game = new Game();
-	// frame.add(game);
-	// frame.setSize(WIDTH, HEIGHT);
-	// frame.setVisible(true);
-	// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	// frame.setLocationRelativeTo(null);
-	// game.enemy();
-	// game.server();
-	// while (true) {
-	// game.move();
-	// game.repaint();
-	// Thread.sleep(10);
-	// }
-	// }
+	/**
+	 * Hace todo lo necesario para mostar el juego en pantalla, este metodo es
+	 * llamado en el main luego de crear la instancia de Game.
+	 */
 	public void run() {
 		JFrame frame = new JFrame("Invaders ");
 		frame.add(this);
@@ -354,6 +360,7 @@ public class Game extends JPanel {
 		frame.setLocationRelativeTo(null);
 		enemy();
 		server();
+		this.ruuning = true;
 		Sound.GAME.loop();
 		this.level = 1;
 

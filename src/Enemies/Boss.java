@@ -19,9 +19,10 @@ public class Boss extends Recruit {
 	private Image imga = new Image();
 	private Game game;
 	BufferedImage img = imga.image("boss");
-	public Boss(Game game, int x, int n, int m,int id) {
-		super(game, x, n, m,id);
-		super.health = 5;
+
+	public Boss(Game game, int x, int n, int m, int id) {
+		super(game, x, n, m, id);
+		super.health = 4;
 		this.x = x;
 		this.game = game;
 		this.n = n;
@@ -46,23 +47,27 @@ public class Boss extends Recruit {
 	//
 	// x = x + xa;
 	// }
+	/**
+	 *
+	 */
+	@Override
 	public void die() {
 		System.out.println("Morí");
 		if (game.generated == 1) {
-			if(game.getBasic().size()>=2) {
+			if (game.getBasic().size() >= 2) {
 				game.setScore(4);
-				//game.reArrange();
+				// game.reArrange();
 
-			}else {
+			} else {
 				game.setScore(2);
-				//game.reArrange();
+				// game.reArrange();
 
 			}
 			game.getBasic().clear();
 
 		} else if (game.generated == 2) {
 			game.getDouble().remove(this);
-			//game.reArrange();
+			// game.reArrange();
 
 		}
 		game.reArrange();
@@ -75,9 +80,9 @@ public class Boss extends Recruit {
 	 * @param g
 	 */
 	public void paint(Graphics2D g) {
-		g.drawImage(img,x, y-10, 156, 144, game);
-//		g.setColor(Color.RED);
-//		g.fillRect(this.x, y - 20, 70, 70);
+		g.drawImage(img, x, y - 10, 156, 144, game);
+		// g.setColor(Color.RED);
+		// g.fillRect(this.x, y - 20, 70, 70);
 
 	}
 
@@ -86,7 +91,7 @@ public class Boss extends Recruit {
 	 * han intersecado.
 	 */
 	public Rectangle getBounds() {
-		return new Rectangle(x, y,120, 20);
+		return new Rectangle(x, y, 120, 20);
 	}
 
 }

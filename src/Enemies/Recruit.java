@@ -34,7 +34,7 @@ public class Recruit {
 	int xa = a;
 	int ya = 1;
 	public int n, m;
-	int health = 2;
+	int health =1 ;
 	BufferedImage img = imgi.image("basic");
 
 	public Recruit(Game game, int x, int n, int m, int id) {
@@ -43,7 +43,7 @@ public class Recruit {
 		this.n = n;
 		this.m = m;
 		this.xa = xa;
-		this.ID= id;
+		this.ID = id;
 	}
 
 	/**
@@ -52,12 +52,17 @@ public class Recruit {
 	 * en paint
 	 * 
 	 */
-	public void setCoordenates(int n, int m,int x) {
+	public void setCoordenates(int n, int m, int x) {
 		this.x = x;
 		this.n = n;
 		this.m = m;
 
 	}
+
+	/**
+	 * Usando los limites detecta los mismos y mueve el enemigo hasta ese limite
+	 * luego cambia la direccion, y baja.
+	 */
 
 	public void move() {
 		if (x + xa < 50 + n) {
@@ -106,7 +111,7 @@ public class Recruit {
 		// System.out.println("Morí");
 		game.setScore(1);
 		if (game.generated == 1) {
-			
+
 			if (this.getId() == 2) {
 				game.getBasic().clear();
 
@@ -133,10 +138,11 @@ public class Recruit {
 	 */
 	public void gethit() {
 		this.health -= 1;
-		//System.out.println(this.health);
+		// System.out.println(this.health);
 		if (this.health <= 0) {
 			die();
 		}
+		
 
 	}
 

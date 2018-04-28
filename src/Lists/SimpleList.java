@@ -11,27 +11,28 @@ public class SimpleList<T> {
 	private SimpleNode<T> head;
 	private SimpleNode<T> tail;
 
-	private int size=0;
+	private int size = 0;
 	private String type;
 
 	public void add(T obj) {
-		this.size +=1;
+		this.size += 1;
 
 		if (head == null) {
 			this.head = new SimpleNode<T>(obj);
 			this.tail = head;
 		} else {
 			SimpleNode<T> temp = this.tail;
-			temp.linkNext(new SimpleNode<T>(obj) );
-			this.tail = temp.getNext(); 
-			//this.head = node;
+			temp.linkNext(new SimpleNode<T>(obj));
+			this.tail = temp.getNext();
+			// this.head = node;
 
 		}
 
 	}
+
 	public void clear() {
 		this.head = null;
-		this.size= 0;
+		this.size = 0;
 	}
 
 	public T getFirst() {
@@ -45,65 +46,69 @@ public class SimpleList<T> {
 			return false;
 		}
 	}
-	
+
 	public int size() {
 		return this.size;
 	}
+
 	/**
-	 * Remueve un nodo a partir del objeto que hay en él.
-	 * Compara cada objeto con el introducido, y al encontrarlo 
-	 * elimina el nodo que lo contiene.
+	 * Remueve un nodo a partir del objeto que hay en él. Compara cada objeto con el
+	 * introducido, y al encontrarlo elimina el nodo que lo contiene.
 	 * 
 	 * @param obj
 	 */
-	public void remove(T obj){
+	public void remove(T obj) {
 		SimpleNode<T> nodo = this.head;
-		if(nodo.getObj() == obj){
+		if (nodo.getObj() == obj) {
 			this.head = nodo.getNext();
-			size --;
-		}else{
-			while(nodo.getNext()!= null){
-				if(nodo.getNext().getObj() == obj){
+			size--;
+		} else {
+			while (nodo.getNext() != null) {
+				if (nodo.getNext().getObj() == obj) {
 					nodo.linkNext(nodo.getNext().getNext());
-					size --;
-//					if(nodo.getNext() == null){
-//						this.tail = nodo;
-//					}
+					size--;
+					// if(nodo.getNext() == null){
+					// this.tail = nodo;
+					// }
 					break;
-				}else{
+				} else {
 					nodo = nodo.getNext();
 				}
 			}
 		}
-}
+	}
+
 	/**
-	 * Obtiene el objeto de un nodo, a partir de un indice especificado.
-	 * Recorre los nodos y cuando llega al nodo deseado retorna el objeto dentro
-	 * de ese nodo.
+	 * Obtiene el objeto de un nodo, a partir de un indice especificado. Recorre los
+	 * nodos y cuando llega al nodo deseado retorna el objeto dentro de ese nodo.
+	 * 
 	 * @param i
 	 * @return
 	 */
-	public T get(int i){
-	    int count = 0;
-	    SimpleNode<T> temporal = this.head;
-	
-	    while (count < i){
-	        temporal = temporal.getNext();
-	        count++;
-	    }
-	    return temporal.getObj();
+	public T get(int i) {
+		int count = 0;
+		SimpleNode<T> temporal = this.head;
+
+		while (count < i) {
+			temporal = temporal.getNext();
+			count++;
+		}
+		return temporal.getObj();
 	}
+
 	/**
 	 * @return the type
 	 */
 	public String getType() {
 		return type;
 	}
+
 	/**
-	 * @param type the type to set
+	 * @param type
+	 *            the type to set
 	 */
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+
 }

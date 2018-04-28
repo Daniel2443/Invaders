@@ -17,7 +17,7 @@ public class CircularList<T> {
 	private int size;
 
 	/**
-	 * 
+	 * Agrega un nodo al inicio, y asocia un objeto al mismo.
 	 */
 	public void addFirst(T name) {
 		if (head == null) {
@@ -40,7 +40,6 @@ public class CircularList<T> {
 	public T getFirstEnemy() {
 		return this.head.getObj();
 	}
-
 
 	public int getSize() {
 		System.out.println(this.size);

@@ -17,30 +17,27 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Main{
+public class Main {
 
-	
-    public static void main(String[] args) throws InterruptedException {
-    	Game game = new Game();
-
-    	game.run();
-		while (true) {
+	public static void main(String[] args) throws InterruptedException {
+		Game game = new Game();
+		game.run();
+		while (game.ruuning) {
 
 			game.move();
 			game.repaint();
 			Thread.sleep(5);
-			
 		}
-//    	
-//    	GameWindow gw = new GameWindow();
-//    	gw.init();
-//    	gw.game.enemy();
-//    	while(true) {
-//    		gw.game.move();
-//    		gw.game.repaint();
-//    		
-//    	}
-    	
-    }
+		//
+		// GameWindow gw = new GameWindow();
+		// gw.init();
+		// gw.game.enemy();
+		// while(true) {
+		// gw.game.move();
+		// gw.game.repaint();
+		//
+		// }
+
+	}
 
 }

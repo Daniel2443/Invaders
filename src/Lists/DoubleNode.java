@@ -19,10 +19,10 @@ public class DoubleNode<T> {
 	 * @param next
 	 * @param prev
 	 */
-	public DoubleNode(T name,int id) {
+	public DoubleNode(T name, int id) {
 		this.setObj(name);
-		this.next=null;
-		this.prev=null;
+		this.next = null;
+		this.prev = null;
 		this.ID = id;
 	}
 
@@ -37,16 +37,19 @@ public class DoubleNode<T> {
 	public T getObj() {
 		return obj;
 	}
+
 	public DoubleNode<T> getNext() {
 		return this.next;
 	}
+
 	public DoubleNode<T> getPrev() {
 		return this.prev;
-		
+
 	}
 
 	/**
-	 * @param obj the obj to set
+	 * @param obj
+	 *            the obj to set
 	 */
 	public void setObj(T obj) {
 		this.obj = obj;

@@ -15,6 +15,10 @@ public class A {
 	public A(Game game) {
 		this.game = game;
 	}
+	/**
+	 * Usando coordenadas y limites, se generan los enemigos dejando un espacio
+	 * entre ellos.
+	 */
 	
 	public void render() {
 		int x=120;
